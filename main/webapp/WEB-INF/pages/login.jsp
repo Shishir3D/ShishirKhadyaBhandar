@@ -19,6 +19,7 @@
 
         <!-- Login Form -->
         <form action="login" method="post">
+        	<label id="error" name="error" style="color: red; text-align:center">‎‎ </label>
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required placeholder="Enter your username">

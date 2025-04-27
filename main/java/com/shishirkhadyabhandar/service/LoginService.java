@@ -16,7 +16,7 @@ public class LoginService {
         try {
             // Database connection setup (adjust according to your DB)
             Class.forName("com.mysql.cj.jdbc.Driver");
-            this.dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_database", "username", "password");
+            this.dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/shishir_khadya_bhandar", "root", "");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -24,7 +24,7 @@ public class LoginService {
 
     // Authenticate the user
     public boolean authenticateUser(String username, String password) throws SQLException {
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM user WHERE username = ? AND password = ?";
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
             stmt.setString(1, username);
             stmt.setString(2, password);

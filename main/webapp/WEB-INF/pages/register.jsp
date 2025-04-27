@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +16,7 @@
         <% } %>
 
         <form action="register" method="post">
+        	<label id="error" name="error" style="color: red; text-align:center">‎‎ </label>
             <label>Full Name:</label>
             <input type="text" name="fullname" required>
 
@@ -40,8 +41,9 @@
             <label>Confirm Password:</label>
             <input type="password" name="repassword" required>
 
-            <button type="submit">Submit</button>
+            <button type="submit">Register</button>
         </form>
+       	<p style="text-align: center;">Already have an account? <a href="login">Login here</a></p>
     </div>
 </body>
 </html>

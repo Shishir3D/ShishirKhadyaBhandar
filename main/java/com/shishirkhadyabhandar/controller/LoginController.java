@@ -7,6 +7,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -29,23 +31,28 @@ public class LoginController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        if (username == null || username.isEmpty()) {
+            request.setAttribute("error", "Username cannot be empty.");
+            request.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(request, response);
+            return;
+        }
+
         try {
-            // Attempt to authenticate the user
             boolean isAuthenticated = loginService.authenticateUser(username, password);
-            
+
             if (isAuthenticated) {
-                // If credentials are correct, redirect to a logged-in page (e.g., dashboard)
-                response.sendRedirect(request.getContextPath() + "/dashboard");
+                HttpSession session = request.getSession();
+                session.setAttribute("user", username);
+                response.sendRedirect(request.getContextPath() + "/home");
             } else {
-                // If credentials are incorrect, show an error message
                 request.setAttribute("error", "Invalid username or password.");
                 request.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(request, response);
             }
         } catch (SQLException e) {
-            // If there's an issue with the database connection or query
             e.printStackTrace();
             request.setAttribute("error", "Internal server error. Please try again later.");
             request.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(request, response);
         }
     }
+
 }

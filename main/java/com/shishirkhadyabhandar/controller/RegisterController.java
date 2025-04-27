@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -60,5 +61,23 @@ public class RegisterController extends HttpServlet {
             System.out.println("Internal error occurred. Please try again later.");
             e.printStackTrace();
         }
+        
+		System.out.println("User ko naam is " + userName);
+		
+		if (userName.length() < 5) {			
+			request.setAttribute("error", "Username invalid");
+			request.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(request, response);
+		} else {			
+            // Store user in session
+            HttpSession session = request.getSession();
+            System.out.println("This is session :");
+            System.out.println(session);
+            session.setAttribute("user", userName);
+            
+			//response.sendRedirect("login");
+		}
+        
     }
+    
+    
 }
