@@ -36,7 +36,7 @@ public class RegisterService {
 	    
 	    public int registerUser(UserModel user) throws ClassNotFoundException {
 	        try {
-	            String query_register_user = "INSERT INTO user (username, fullname, email, phone, role, password) " +
+	            String query_register_user = "INSERT INTO users (username, fullname, email, phone, role, password) " +
 	                                         "VALUES (?, ?, ?, ?, ?, ?)";
 
 	            PreparedStatement stmt = dbConn.prepareStatement(query_register_user);

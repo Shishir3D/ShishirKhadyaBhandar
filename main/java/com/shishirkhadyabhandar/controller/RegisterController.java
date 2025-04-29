@@ -57,25 +57,27 @@ public class RegisterController extends HttpServlet {
                 // If registration fails, display an error message
                 System.out.println("Registration failed. Please try again later.");
             }
+            
+            
+            if (userName.length() < 5) {			
+    			request.setAttribute("error", "Length of Username should be greater than 5");
+    			request.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(request, response);
+    		} else {			
+                // Store user in session
+                HttpSession session = request.getSession();
+                System.out.println("This is session :");
+                System.out.println(session);
+                session.setAttribute("user", userName);
+                
+    			//response.sendRedirect("login");
+    		}
+            
         } catch (ClassNotFoundException e) {
             System.out.println("Internal error occurred. Please try again later.");
             e.printStackTrace();
         }
         
 		System.out.println("User ko naam is " + userName);
-		
-		if (userName.length() < 5) {			
-			request.setAttribute("error", "Username invalid");
-			request.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(request, response);
-		} else {			
-            // Store user in session
-            HttpSession session = request.getSession();
-            System.out.println("This is session :");
-            System.out.println(session);
-            session.setAttribute("user", userName);
-            
-			//response.sendRedirect("login");
-		}
         
     }
     

@@ -7,6 +7,6 @@
 <title>User Profile</title>
 </head>
 <body>
-
+	
 </body>
 </html>

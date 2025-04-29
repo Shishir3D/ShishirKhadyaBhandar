@@ -80,3 +80,7 @@ p[style*="color: red"] {
     margin-bottom: 20px;
     font-weight: bold;
 }
+
+.key{
+	display: none;
+}

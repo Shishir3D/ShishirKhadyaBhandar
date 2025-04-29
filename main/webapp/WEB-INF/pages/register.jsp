@@ -31,12 +31,18 @@
 
             <label>Role:</label>
             <div class="role-options">
-                <label><input type="radio" name="role" value="user" checked> User</label>
-                <label><input type="radio" name="role" value="admin"> Admin</label>
+                <label><input type="radio" name="role" value="user" checked id="user"> User</label>
+                <label><input type="radio" name="role" value="admin" id="admin"> Admin</label>
             </div>
-
+			
+    		<div class="key" id="key">
+	           	<label>Key:</label>            
+    	        <input type="password" name="key">
+    		</div>
+			
+			
             <label>Password:</label>
-            <input type="password" name="password" required>
+			<input type="password" name="password" required>            
 
             <label>Confirm Password:</label>
             <input type="password" name="repassword" required>
@@ -45,5 +51,25 @@
         </form>
        	<p style="text-align: center;">Already have an account? <a href="login">Login here</a></p>
     </div>
+    
+   <script>
+	    const adminRadio = document.getElementById("admin");
+	    const userRadio = document.getElementById("user");
+	    const keyField = document.getElementById("key");
+	
+	    function toggleKeyField() {
+	        if (adminRadio.checked) {
+	            keyField.style.display = "block";
+	        } else {
+	            keyField.style.display = "none";
+	        }
+	    }
+	
+	    adminRadio.addEventListener("change", toggleKeyField);
+	    userRadio.addEventListener("change", toggleKeyField);
+	
+	    toggleKeyField();
+	</script>
+
 </body>
 </html>
