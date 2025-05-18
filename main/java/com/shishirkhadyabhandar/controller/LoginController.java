@@ -36,7 +36,6 @@ public class LoginController extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(request, response);
             return;
         }
-
         try {
             boolean isAuthenticated = loginService.authenticateUser(username, password);
 

@@ -24,7 +24,7 @@ public class LoginService {
 
     // Authenticate the user
     public boolean authenticateUser(String username, String password) throws SQLException {
-        String query = "SELECT * FROM user WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (PreparedStatement stmt = dbConn.prepareStatement(query)) {
             stmt.setString(1, username);
             stmt.setString(2, password);
