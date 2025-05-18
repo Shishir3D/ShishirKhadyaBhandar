@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
             if (isAuthenticated) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", username);
-                response.sendRedirect(request.getContextPath() + "/home");
+                response.sendRedirect(request.getContextPath() + "/product");
             } else {
                 request.setAttribute("error", "Invalid username or password.");
                 request.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(request, response);
