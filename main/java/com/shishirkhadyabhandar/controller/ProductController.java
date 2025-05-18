@@ -12,11 +12,11 @@ import java.io.IOException;
 /**
  * Servlet implementation class LoginController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/home" })
-public class HomeController extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/product" })
+public class ProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public HomeController() {
+    public ProductController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -24,11 +24,11 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false); // Don't create a new session
         if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect("register"); // Redirect to register page
+            response.sendRedirect("login"); // Redirect to register page
             return;
         }
 
-        request.getRequestDispatcher("WEB-INF/pages/home.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/pages/product.jsp").forward(request, response);
     }
 
 

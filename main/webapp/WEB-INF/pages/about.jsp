@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Us - Shishir Khadya Bhandar</title>
+<title>About Us - Shishir Khadya Bhandar</title>
 <style>
   :root {
     --primary-green: #4CAF50; /* Main green */
@@ -98,12 +98,12 @@
     margin: 0;
   }
 
-  /* Contact Content */
-  .contact-content {
+  /* About Content */
+  .about-content-section {
     padding: 20px 0;
   }
 
-  .contact-info, .contact-form-section, .map-section {
+  .about-block {
     background: #fff;
     padding: 25px;
     margin-bottom: 30px;
@@ -111,74 +111,59 @@
     box-shadow: var(--box-shadow-std);
   }
 
-  .contact-info h3, .contact-form-section h3, .map-section h3 {
+  .about-block h3 {
     color: var(--dark-green);
     margin-top: 0;
     border-bottom: 2px solid var(--light-green-bg);
     padding-bottom: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
-  .contact-info p {
+  .about-block p {
     font-size: 1.1em;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: #555;
   }
 
-  .contact-info i { /* For icons */
-    color: var(--primary-green);
-    margin-right: 10px;
-    width: 20px; /* Ensure consistent icon alignment */
+  .about-block ul {
+    list-style: disc;
+    margin-left: 20px;
+    padding-left: 0;
+  }
+
+  .about-block ul li {
+    margin-bottom: 8px;
+    font-size: 1.05em;
+    color: #555;
+  }
+
+  .team-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
     text-align: center;
   }
 
-  .map-placeholder {
-    width: 100%;
-    height: 350px;
-    background-color: #e0e0e0;
-    border-radius: var(--border-radius-std);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #777;
-    font-style: italic;
+  .team-member img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-green);
+    margin-bottom: 10px;
   }
-  
-  /* Basic Form Styling */
-  .contact-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
+
+  .team-member h4 {
+    margin: 5px 0;
     color: var(--dark-green);
   }
-  .contact-form input[type="text"],
-  .contact-form input[type="email"],
-  .contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius-std);
-    box-sizing: border-box; /* So padding doesn't add to width */
+
+  .team-member p {
+      font-size: 0.9em;
+      color: #777;
+      margin-top: 0;
   }
-  .contact-form textarea {
-    height: 150px;
-    resize: vertical;
-  }
-  .contact-form button {
-    display: inline-block;
-    background: var(--primary-green);
-    color: var(--text-light);
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: var(--border-radius-std);
-    font-size: 1.1em;
-    transition: background-color 0.3s ease;
-    border: none;
-    cursor: pointer;
-  }
-  .contact-form button:hover {
-    background: var(--dark-green);
-  }
+
 
   /* Footer */
   footer {
@@ -210,8 +195,6 @@
     }
   }
 </style>
-<!-- Font Awesome for icons (optional, but nice for contact info) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
 
@@ -222,10 +205,10 @@
       </div>
       <nav>
         <ul>
-          <li><a href="index.jsp">Home</a></li>
-          <li><a href="index.jsp#categories">Categories</a></li>
-          <li><a href="about.jsp">About Us</a></li>
-          <li><a href="contact.jsp">Contact</a></li>
+          <li><a href="home">Home</a></li>
+          <li><a href="product">Product</a></li>
+          <li><a href="about">About Us</a></li>
+          <li><a href="contact">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -233,48 +216,64 @@
 
   <section class="page-title-section">
     <div class="container">
-      <h2>Get In Touch</h2>
+      <h2>About Shishir Khadya Bhandar</h2>
     </div>
   </section>
 
-  <div class="container contact-content">
-    <div class="contact-info">
-      <h3>Our Contact Details</h3>
-      <p><i class="fas fa-map-marker-alt"></i><strong>Address:</strong>Dhapasi, Kathmandu</p>
-      <p><i class="fas fa-phone-alt"></i><strong>Phone:</strong> 9748844595</p>
-      <p><i class="fas fa-envelope"></i><strong>Email:</strong> shishir@gmail.com</p>
-      <p><i class="fas fa-clock"></i><strong>Operating Hours:</strong> Sunday - Friday: 8:00 AM - 8:00 PM</p>
+  <div class="container about-content-section">
+    <div class="about-block">
+      <h3>Our Story</h3>
+      <p>
+        Welcome to Shishir Khadya Bhandar, your trusted neighborhood grocery store. Founded with a passion for
+        providing fresh, high-quality food products to our community, we have grown from a small local shop
+        to a beloved destination for daily essentials and gourmet finds. Our journey began with a simple idea:
+        to make good food accessible to everyone, combined with friendly service that makes you feel right at home.
+      </p>
+      <p>
+        We believe that food is more than just sustenance; it's about family, tradition, and health. That's why we
+        take great care in sourcing our products, prioritizing local farmers and suppliers whenever possible.
+      </p>
     </div>
 
-    <div class="contact-form-section">
-        <h3>Send Us a Message</h3>
-        <form action="#" method="POST" class="contact-form">
-            <div>
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div>
-                <label for="email">Your Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div>
-                <label for="subject">Subject:</label>
-                <input type="text" id="subject" name="subject" required>
-            </div>
-            <div>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-            <button type="submit">Send Message</button>
-        </form>
+    <div class="about-block">
+      <h3>Our Mission & Values</h3>
+      <p>
+        Our mission is to be the heart of our community's kitchen by consistently offering a wide selection of
+        fresh and quality products at fair prices, all while providing an exceptional shopping experience.
+      </p>
+      <ul>
+        <li><strong>Quality First:</strong> We are committed to stocking only the freshest produce, finest meats, and highest-quality pantry staples.</li>
+        <li><strong>Customer Focus:</strong> Your satisfaction is our top priority. We strive to meet your needs with a smile and helpful service.</li>
+        <li><strong>Community Spirit:</strong> We believe in giving back and being an active, positive presence in our neighborhood.</li>
+        <li><strong>Integrity:</strong> We operate with honesty and transparency in all our dealings with customers, suppliers, and staff.</li>
+        <li><strong>Sustainability:</strong> We are increasingly focused on sustainable practices, from reducing waste to supporting eco-friendly suppliers.</li>
+      </ul>
     </div>
 
-    <div class="map-section">
-      <h3>Find Us Here</h3>
-      <div class="map-placeholder">
-        <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/directions?origin=dhapasi&destination=dhapasi&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe>
-      </div>
+    <div class="about-block">
+        <h3>Meet Our Team</h3>
+        <p>
+            Behind Shishir Khadya Bhandar is a dedicated team passionate about food and customer service. While we can't introduce everyone here, know that each member plays a vital role in bringing you the best shopping experience.
+        </p>
+        <div class="team-showcase">
+            <div class="team-member">
+                <img src="${pageContext.request.contextPath}/images/people/momo.png" alt="Store Owner">
+                <h4>Shishir Poudel</h4>
+                <p>Founder</p>
+            </div>
+            <div class="team-member">
+                <img src="${pageContext.request.contextPath}/images/people/tea.png" alt="Store Manager">
+                <h4>Ram Thapa</h4>
+                <p>Store Manager</p>
+            </div>
+            <div class="team-member">
+                <img src="${pageContext.request.contextPath}/images/people/smallg.png" alt="Staff Member">
+                <h4>Sita Lama</h4>
+                <p>Customer Service Lead</p>
+            </div>
+        </div>
     </div>
+
   </div>
 
   <footer>
