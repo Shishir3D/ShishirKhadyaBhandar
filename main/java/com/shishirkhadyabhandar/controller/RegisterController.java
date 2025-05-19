@@ -2,6 +2,7 @@ package com.shishirkhadyabhandar.controller;
 
 import com.shishirkhadyabhandar.model.UserModel;
 import com.shishirkhadyabhandar.service.RegisterService;
+import com.shishirkhadyabhandar.util.PasswordUtil;
 import com.shishirkhadyabhandar.util.RegisterValidationUtil; // Import the utility class
 
 import jakarta.servlet.ServletException;
@@ -54,21 +55,24 @@ public class RegisterController extends HttpServlet {
         // 3. If Validation Failed, forward back to JSP with error
         if (errorMessage != null) {
             request.setAttribute("error", errorMessage);
-            // Repopulate fields for better UX (don't repopulate passwords)
+            // Repopulate fields for better UX 
             repopulateFormOnError(request, fullName, userName, email, phoneNumber, role);
             request.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(request, response);
             return; // Stop further processing
         }
+        
+        // Encrypt the password before storing
+        password = PasswordUtil.encrypt(userName, password); 
 
         // 4. If Validation Passed, proceed with registration
         // Trim values before creating the model to store clean data
         UserModel user = new UserModel(
-            userName.trim(), // Use trimmed username
+            userName.trim(),
             fullName.trim(),
             email.trim(),
             phoneNumber.trim(),
-            role.trim(), // Use trimmed role
-            password // Password should not be trimmed - whitespace might be intentional
+            role.trim(), 
+            password 
         );
 
         try {
@@ -77,21 +81,17 @@ public class RegisterController extends HttpServlet {
 
             if (result == 1) {
                 // SUCCESS: Registration successful
-                // Redirect to login page (Post-Redirect-Get pattern)
                 response.sendRedirect(request.getContextPath() + "/login");
-                return; // Stop processing after redirect
+                return; 
             } else {
                 // FAILURE: Service indicated registration failed (e.g., duplicate user)
-                 request.setAttribute("error", "Registration failed. The username or email might already exist.");
+                 request.setAttribute("error", "Registration failed. The username, email or phone number might already exist.");
             }
 
-        /* } catch (SQLException e) {
-            e.printStackTrace(); // Log the full error for server admins
-            request.setAttribute("error", "Database error during registration. Please try again later."); */
         } catch (ClassNotFoundException e) { // Less likely unless dynamic class loading issues
              e.printStackTrace();
              request.setAttribute("error", "Server configuration error. Please try again later.");
-        } catch (Exception e) { // Catch unexpected service layer errors
+        } catch (Exception e) { 
             e.printStackTrace();
             request.setAttribute("error", "An unexpected error occurred. Please try again later.");
         }

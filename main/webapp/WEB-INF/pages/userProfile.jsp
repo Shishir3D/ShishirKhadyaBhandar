@@ -15,7 +15,7 @@
         <div class="container header-flex-container">
           <div id="branding">
             <h1><a href="${pageContext.request.contextPath}/home">Shishir Khadya Bhandar</a></h1>
-          </div>
+          </div>       
           <nav>
             <ul>
               <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
@@ -25,7 +25,6 @@
             </ul>
           </nav>
           <div class="user-actions">
-            <a href="${pageContext.request.contextPath}/profile" class="action-link login-link"><i class="fas fa-user-circle"></i> Profile</a>
             <a href="${pageContext.request.contextPath}/logout" class="action-link signup-link">Logout</a>
           </div>
         </div>
@@ -40,24 +39,20 @@
                 <h2><i class="fas fa-id-card"></i> Personal Information</h2>
                 <div class="info-grid">
                     <div class="info-item">
-                        <strong>Full Name:</strong>
-                        <p>Shishir Poudel</p>
+                        <strong>Username:</strong>
+                        <p>${user.username}</p>
                     </div>
                     <div class="info-item">
-                        <strong>Username:</strong>
-                        <p>shishir</p>
+                        <strong>Full Name:</strong>
+                        <p>${user.fullname}</p>
                     </div>
                     <div class="info-item">
                         <strong>Email:</strong>
-                        <p>shishir@gmail.com</p>
+                        <p>${user.email}</p>
                     </div>
                     <div class="info-item">
                         <strong>Phone Number:</strong>
-                        <p>9748844595</p>
-                    </div>
-                    <div class="info-item full-width">
-                        <strong>Address:</strong>
-                        <p>Dhapasi, Kathmandu</p>
+                        <p>${user.phone}</p>
                     </div>
                 </div>
                 <button class="btn btn-primary" id="editProfileBtn"><i class="fas fa-edit"></i> Edit Profile</button>
@@ -111,21 +106,21 @@
             <span class="close-btn" onclick="closeModal('editProfileModal')">×</span>
             <h2>Edit Your Profile</h2>
             <form action="${pageContext.request.contextPath}/updateProfile" method="POST" class="modal-form">
+				<div class="form-group">
+				    <label for="editUsername">Username:</label>
+				    <input type="text" id="editUsername" name="username" value="${user.username}" readonly style="color:gray">
+				</div>
                 <div class="form-group">
                     <label for="editFullName">Full Name:</label>
-                    <input type="text" id="editFullName" name="fullName" value="Shishir Poudel" required>
+                    <input type="text" id="editFullName" name="fullName" value="${user.fullname}" required>
                 </div>
                 <div class="form-group">
                     <label for="editEmail">Email:</label>
-                    <input type="email" id="editEmail" name="email" value="shishir@gmail.com" required>
+                    <input type="email" id="editEmail" name="email" value="${user.email}" required>
                 </div>
                 <div class="form-group">
                     <label for="editPhoneNumber">Phone Number:</label>
-                    <input type="tel" id="editPhoneNumber" name="phoneNumber" value="9748844595" required>
-                </div>
-                <div class="form-group">
-                    <label for="editAddress">Address:</label>
-                    <textarea id="editAddress" name="address" rows="3">Dhapasi, Kathmandu</textarea>
+                    <input type="tel" id="editPhoneNumber" name="phone" value="${user.phone}" required>
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Save Changes</button>

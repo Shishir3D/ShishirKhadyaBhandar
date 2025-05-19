@@ -23,10 +23,6 @@ public class ProductController extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false); // Don't create a new session
-        if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect("login"); // Redirect to register page
-            return;
-        }
 
         request.getRequestDispatcher("WEB-INF/pages/product.jsp").forward(request, response);
     }

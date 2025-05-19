@@ -1,6 +1,7 @@
 package com.shishirkhadyabhandar.controller;
 
 import com.shishirkhadyabhandar.service.LoginService;
+import com.shishirkhadyabhandar.util.PasswordUtil;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -29,7 +30,9 @@ public class LoginController extends HttpServlet {
     // Handle POST request (process login attempt)
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
+        
         String password = request.getParameter("password");
+        
 
         if (username == null || username.isEmpty()) {
             request.setAttribute("error", "Username cannot be empty.");
@@ -38,10 +41,12 @@ public class LoginController extends HttpServlet {
         }
         try {
             boolean isAuthenticated = loginService.authenticateUser(username, password);
+            String role = loginService.getRole(username);
 
             if (isAuthenticated) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", username);
+                session.setAttribute("role", role);
                 response.sendRedirect(request.getContextPath() + "/product");
             } else {
                 request.setAttribute("error", "Invalid username or password.");

@@ -20,7 +20,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class PasswordUtil {
 	private static final String ENCRYPT_ALGO = "AES/GCM/NoPadding";
 
-    private static final int TAG_LENGTH_BIT = 128; // must be one of {128, 120, 112, 104, 96}
+    private static final int TAG_LENGTH_BIT = 128; 
     private static final int IV_LENGTH_BYTE = 12;
     private static final int SALT_LENGTH_BYTE = 16;
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
@@ -57,7 +57,7 @@ public class PasswordUtil {
     }
 
     // return a base64 encoded AES encrypted text
-    public static String encrypt(String employee_id, String password){
+    public static String encrypt(String userName, String password){
     	try {
 		    // 16 bytes salt
 		    byte[] salt = getRandomNonce(SALT_LENGTH_BYTE);
@@ -66,7 +66,7 @@ public class PasswordUtil {
 		    byte[] iv = getRandomNonce(IV_LENGTH_BYTE);
 		
 		    // secret key from password
-		    SecretKey aesKeyFromPassword = getAESKeyFromPassword(employee_id.toCharArray(), salt);
+		    SecretKey aesKeyFromPassword = getAESKeyFromPassword(userName.toCharArray(), salt);
 		
 		    Cipher cipher = Cipher.getInstance(ENCRYPT_ALGO);
 		

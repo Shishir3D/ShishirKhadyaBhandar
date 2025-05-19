@@ -26,6 +26,7 @@
               <li><a href="${pageContext.request.contextPath}/product">Products</a></li>
               <li><a href="${pageContext.request.contextPath}/about">About Us</a></li>
               <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
+              <li><a href="${pageContext.request.contextPath}/adminDashboard">Admin Dashboard</a></li>
               <li><a href="${pageContext.request.contextPath}/userProfile">User Profile</a></li>
             </ul>
           </nav>

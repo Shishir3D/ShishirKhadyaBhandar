@@ -18,7 +18,7 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                    <li><a href="#product-management-section"><i class="fas fa-box-open"></i> Products</a></li>
+                    <li><a href="${pageContext.request.contextPath}/product-admin"><i class="fas fa-box-open"></i> Products</a></li>
                     <li><a href="#"><i class="fas fa-users"></i> Users</a></li>
                     <li><a href="#"><i class="fas fa-chart-line"></i> Reports</a></li>
                     <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
