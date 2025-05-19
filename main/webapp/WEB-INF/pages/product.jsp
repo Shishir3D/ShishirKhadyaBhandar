@@ -13,8 +13,12 @@
 
     <header>
         <div class="container">
-          <div id="branding">
+          <div id="branding" style="display:flex; justify-content:space-between">
             <h1>Shishir Khadya Bhandar</h1>
+            <div class="user-actions">
+     		    <a href="${pageContext.request.contextPath}/login" class="action-link login-link">Login</a>
+          		<a href="${pageContext.request.contextPath}/register" class="action-link signup-link">Sign Up</a>
+      		</div>
           </div>
           <nav>
             <ul>
@@ -22,12 +26,14 @@
               <li><a href="${pageContext.request.contextPath}/product">Products</a></li>
               <li><a href="${pageContext.request.contextPath}/about">About Us</a></li>
               <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
+              <li><a href="${pageContext.request.contextPath}/adminDashboard">Admin Dashboard</a></li>
+              <li><a href="${pageContext.request.contextPath}/userProfile">User Profile</a></li>
             </ul>
           </nav>
         </div>
     </header>
 
-
+<br><br><br>
     <main class="container">
 
         <section class="hero-banner">
@@ -102,36 +108,6 @@
                     <p class="price">Rs. 220</p>
                 </div>
                 
-                                <div class="product-card">
-                    <img src="${pageContext.request.contextPath}/images/saag.jpg" alt="Saag">
-                    <h3>Saag (Kg)</h3>
-                    <p class="price">Rs. 80</p>
-                </div>
-                <div class="product-card">
-                    <img src="${pageContext.request.contextPath}/images/apple.png" alt="Apple - Mustang">
-                    <h3>Apple - Mustang (Kg)</h3>
-                    <p class="price">Rs. 250</p>
-                </div>
-                <div class="product-card">
-                    <img src="${pageContext.request.contextPath}/images/milk.png" alt="Fresh Milk">
-                    <h3>Fresh Milk (1L)</h3>
-                    <p class="price">Rs. 95</p>
-                </div>
-                 <div class="product-card">
-                    <img src="${pageContext.request.contextPath}/images/rice.png" alt="Basmati Rice">
-                    <h3>Basmati Rice (Kg)</h3>
-                    <p class="price">Rs. 180</p>
-                </div>
-                 <div class="product-card">
-                    <img src="https://via.placeholder.com/180x180/E8F5E9/000000?text=Snack" alt="Potato Chips">
-                    <h3>Potato Chips</h3>
-                    <p class="price">Rs. 50</p>
-                </div>
-                 <div class="product-card">
-                    <img src="https://via.placeholder.com/180x180/E8F5E9/000000?text=Beverage" alt="Orange Juice">
-                    <h3>Orange Juice (1L)</h3>
-                    <p class="price">Rs. 220</p>
-                </div>
             </div>
         </section>
 

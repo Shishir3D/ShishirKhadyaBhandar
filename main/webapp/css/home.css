@@ -4,14 +4,18 @@
 	--primary-green: #4CAF50;
 	--dark-green: #388E3C;
 	--light-green-bg: #E8F5E9;
+	--header-bg: #f8f9fa; /* New whitish header background */
+	--header-text-color: #343a40; /* Darker text for whitish header */
+	--header-link-hover-bg: #e9ecef; /* Hover background for links */
+    --header-border-color: #dee2e6; /* Lighter border for header */
 	--text-dark: #333333;
 	--text-light: #FFFFFF;
 	--border-radius-std: 8px;
-	--box-shadow-std: 0 4px 8px rgba(0, 0, 0, 0.1);
+	--box-shadow-std: 0 2px 4px rgba(0, 0, 0, 0.075); /* Softer shadow */
 }
 
 html {
-    scroll-behavior: smooth; /* Optional: for smooth scrolling effect */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -32,81 +36,134 @@ body {
 }
 
 header {
-	background: var(--primary-green);
-	color: var(--text-light);
-	padding: 1rem 0;
-	border-bottom: var(--dark-green) 3px solid;
+	background: var(--header-bg);
+	color: var(--header-text-color);
+	padding: 0.75rem 0; /* Slimmer padding */
+	border-bottom: 1px solid var(--header-border-color); /* Lighter border */
 	position: sticky;
 	top: 0;
 	z-index: 1000;
+    box-shadow: var(--box-shadow-std); /* Add a subtle shadow */
 }
 
-header a {
-	color: var(--text-light);
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: 16px;
-}
-
-header ul {
-	padding: 0;
-	list-style: none;
-	display: flex;
-	justify-content: center;
-}
-
-header li {
-	margin: 0 15px;
+header .header-flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header #branding {
-	text-align: center;
-	margin-bottom: 10px;
+    text-align: left;
+    margin-bottom: 0;
 }
 
 header #branding h1 {
 	margin: 0;
-	font-size: 2.5em;
+	font-size: 1.8em; /* Slightly smaller for slimmer header */
+}
+header #branding h1 a {
+    color: var(--header-text-color); /* Ensure link color matches header text */
+    text-decoration: none;
 }
 
 header nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center; /* Center nav items within its flex space */
+}
+
+header nav ul {
+	padding: 0;
+	list-style: none;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+}
+
+header nav li {
+	margin: 0 10px; /* Slightly reduced margin */
+}
+
+header nav a {
+	color: var(--header-text-color);
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 0.9em; /* Slightly smaller font */
+    padding: 5px 8px; /* Add some padding for better click targets */
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 header nav a:hover {
-	color: var(--light-green-bg);
-	font-weight: bold;
+	background-color: var(--header-link-hover-bg);
+    color: var(--primary-green); /* Or keep var(--header-text-color) */
+	font-weight: normal; /* Remove bold on hover for cleaner look */
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.user-actions .action-link {
+    color: var(--header-text-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85em; /* Slightly smaller */
+    margin-left: 12px; /* Slightly reduced margin */
+    padding: 6px 12px; /* Adjusted padding */
+    border-radius: var(--border-radius-std);
+    border: 1px solid var(--primary-green); /* Use primary green for border */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.user-actions .login-link {
+    background-color: transparent;
+    color: var(--primary-green);
+}
+
+.user-actions .login-link:hover {
+    background-color: var(--primary-green);
+    color: var(--text-light);
+}
+
+.user-actions .signup-link {
+    background-color: var(--primary-green);
+    color: var(--text-light);
+    border-color: var(--primary-green);
+}
+
+.user-actions .signup-link:hover {
+    background-color: var(--dark-green); /* Darker green on hover */
+    border-color: var(--dark-green);
 }
 
 .hero {
     background-color: var(--light-green-bg);
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+        linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
         url('../images/hero.png');
-	background-repeat: no-repeat, no-repeat; 
+	background-repeat: no-repeat, no-repeat;
     background-position: center center, center center;
-    background-size: cover, cover; 
+    background-size: cover, cover;
     color: var(--dark-green);
-    min-height: 80vh;
+    min-height: 75vh; /* Slightly reduced height */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 20px;
-    position: relative; /* Good practice if you ever add absolutely positioned children */
+    position: relative;
 }
 
 .hero h2 {
-	font-size: 3em;
+	font-size: 2.8em; /* Slightly reduced */
 	margin-bottom: 10px;
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .hero p {
-	font-size: 1.2em;
+	font-size: 1.15em; /* Slightly reduced */
 	margin-bottom: 20px;
 }
 
@@ -120,7 +177,7 @@ header nav a:hover {
 	font-size: 1.1em;
 	transition: background-color 0.3s ease;
 	border: 2px solid var(--dark-green);
-    margin-top: 10px; /* Added some margin for spacing */
+    margin-top: 10px;
 }
 
 .cta-button:hover {
@@ -130,7 +187,7 @@ header nav a:hover {
 .featured-categories {
 	padding: 40px 0;
 	text-align: center;
-    scroll-margin-top: 90px; 
+    scroll-margin-top: 70px; /* Adjust based on new slimmer header height */
 }
 
 .featured-categories h3 {
@@ -156,7 +213,7 @@ header nav a:hover {
 
 .category-card:hover {
 	transform: translateY(-5px);
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .category-card img {
@@ -184,7 +241,7 @@ header nav a:hover {
 	background-color: var(--light-green-bg);
 	padding: 40px 0;
 	text-align: center;
-    scroll-margin-top: 90px; 
+    scroll-margin-top: 70px; /* Adjust based on new slimmer header height */
 }
 
 .about-snippet h3 {
@@ -199,8 +256,15 @@ header nav a:hover {
 	margin: 0 auto 20px auto;
 }
 
-#contact { 
-    scroll-margin-top: 90px;
+#contact {
+    scroll-margin-top: 70px; /* Adjust based on new slimmer header height */
+    text-align:center;
+    padding: 30px 0;
+}
+#contact h3 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--dark-green);
 }
 
 footer {
@@ -215,19 +279,51 @@ footer p {
 	margin: 0;
 }
 
-@media ( max-width : 768px) {
+@media (max-width: 768px) {
+    header .header-flex-container {
+        flex-direction: column;
+        padding: 0.5rem 0; /* Further slim down on mobile */
+    }
+    header #branding {
+        width: 100%;
+        text-align: center; /* Center branding on mobile when stacked */
+        margin-bottom: 5px;
+    }
 	header #branding h1 {
-		font-size: 2em;
+		font-size: 1.6em; /* Smaller on mobile */
 	}
+    header nav {
+        flex-grow: 0;
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 	header nav ul {
 		flex-direction: column;
 		align-items: center;
+        width: 100%;
 	}
 	header nav li {
-		margin: 5px 0;
+		margin: 3px 0; /* Tighter spacing */
+        width: 100%;
+        text-align: center;
 	}
+    header nav a {
+        display: block; /* Make links take full width for easier tapping */
+        padding: 8px 0;
+    }
+    .user-actions {
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+        flex-wrap: wrap; /* Allow buttons to wrap if needed */
+    }
+    .user-actions .action-link {
+        margin: 5px; /* Spacing around buttons */
+        font-size: 0.8em;
+    }
 	.hero h2 {
-		font-size: 2.2em;
+		font-size: 2em;
 	}
 	.hero p {
 		font-size: 1em;
@@ -236,6 +332,6 @@ footer p {
 		grid-template-columns: 1fr;
 	}
     .featured-categories, .about-snippet, #contact {
-        scroll-margin-top: 70px; 
+        scroll-margin-top: 60px; /* Adjust for even slimmer mobile header */
     }
 }

@@ -1,77 +1,107 @@
 package com.shishirkhadyabhandar.util;
 
-public final class RegisterValidationUtil { 
+import java.util.regex.Pattern;
 
-    // Make the constructor private so this utility class cannot be instantiated
-    private RegisterValidationUtil() {}
+public class RegisterValidationUtil {
+
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(
+            "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+
+    private static final Pattern PHONE_PATTERN = Pattern.compile("^(98|97|96)\\d{8}$");
+
+    private static final Pattern USERNAME_PATTERN = Pattern.compile("^[a-zA-Z0-9_.]{3,20}$");
+
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d@$!%*?&]{8,}$");
 
     /**
-     * Validates the user registration input data.
+     * Validates all registration form fields.
      *
-     * @param fullName The user's full name.
-     * @param userName The desired username.
-     * @param email The user's email address.
-     * @param phoneNumber The user's phone number.
-     * @param role The selected role ("user" or "admin").
-     * @param adminKey The provided key (only relevant if role is "admin").
-     * @param password The user's chosen password.
-     * @param repassword The confirmation password.
-     * @param expectedAdminKey The correct key required for admin registration.
-     * @return An error message String if validation fails, or null if validation passes.
+     * @param fullName      The user's full name.
+     * @param userName      The desired username.
+     * @param email         The user's email address.
+     * @param phoneNumber   The user's phone number.
+     * @param role          The selected role ("user" or "admin").
+     * @param adminKeyInput The key provided if the role is "admin".
+     * @param password      The chosen password.
+     * @param repassword    The confirmed password.
+     * @param expectedAdminKey The correct admin key defined in the controller.
+     * @return A String containing the error message if validation fails, or null if validation passes.
      */
-    public static String validateRegistration(String fullName, String userName, String email,
-                                            String phoneNumber, String role, String adminKey,
-                                            String password, String repassword,
-                                            String expectedAdminKey) {
+    public static String validateRegistration(
+            String fullName, String userName, String email, String phoneNumber,
+            String role, String adminKeyInput, String password, String repassword,
+            String expectedAdminKey) {
 
-        // 1. Check for required fields (null or empty/whitespace only)
-        if (isNullOrBlank(fullName) ||
-            isNullOrBlank(userName) ||
-            isNullOrBlank(email) ||
-            isNullOrBlank(phoneNumber) ||
-            isNullOrBlank(role) || // Role must be selected
-            password == null || password.isEmpty() || // Password can't be just whitespace
-            repassword == null || repassword.isEmpty()) {
-            return "All fields except Admin Key are required.";
+        if (isNullOrEmpty(fullName)) {
+            return "Full Name is required.";
+        }
+        if (isNullOrEmpty(userName)) {
+            return "Username is required.";
+        }
+        if (isNullOrEmpty(email)) {
+            return "Email is required.";
+        }
+        if (isNullOrEmpty(phoneNumber)) {
+            return "Phone Number is required.";
+        }
+        if (isNullOrEmpty(role)) {
+            return "Role selection is required.";
+        }
+        if (isNullOrEmpty(password)) {
+            return "Password is required.";
+        }
+        if (isNullOrEmpty(repassword)) {
+            return "Confirm Password is required.";
         }
 
-        // Trim whitespace from fields that allow it before further validation
-        String trimmedUserName = userName.trim();
-        // String trimmedEmail = email.trim(); // Consider trimming email too
-
-        // 2. Username length validation
-        if (trimmedUserName.length() < 5) {
-            return "Username must be at least 5 characters long.";
+        if (fullName.trim().length() < 3) {
+            return "Full Name must be at least 3 characters long.";
+        }
+        if (!fullName.trim().matches("^[a-zA-Z\\s.'-]+$")) {
+            return "Full Name contains invalid characters.";
         }
 
-        // 3. Password match validation
+        if (!USERNAME_PATTERN.matcher(userName.trim()).matches()) {
+            return "Username must be 3-20 characters and can only contain letters, numbers, underscores (_), and dots (.).";
+        }
+
+        if (!EMAIL_PATTERN.matcher(email.trim()).matches()) {
+            return "Invalid email format.";
+        }
+
+        if (!PHONE_PATTERN.matcher(phoneNumber.trim()).matches()) {
+            return "Invalid phone number format. (Expected: 98XXXXXXXX, 97XXXXXXXX)";
+        }
+
+        if ("admin".equalsIgnoreCase(role.trim())) {
+            if (isNullOrEmpty(adminKeyInput)) {
+                return "Admin Key is required for admin registration.";
+            }
+            if (!expectedAdminKey.equals(adminKeyInput)) {
+                return "Invalid Admin Key.";
+            }
+        } else if (!"user".equalsIgnoreCase(role.trim())) {
+            return "Invalid role selected.";
+        }
+
+        if (!PASSWORD_PATTERN.matcher(password).matches()) {
+            return "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit. Special characters like @$!%*?& are allowed.";
+        }
+
         if (!password.equals(repassword)) {
             return "Passwords do not match.";
         }
 
-        // 4. Admin Key validation (only if role is admin)
-        if ("admin".equalsIgnoreCase(role.trim())) { // Use equalsIgnoreCase for robustness
-            // Admin key is required if role is admin
-            if (isNullOrBlank(adminKey)) {
-                 return "Admin Key is required for Admin registration.";
-            }
-            // Check if the provided key matches the expected key
-            if (!expectedAdminKey.equals(adminKey)) { // Use .equals for String comparison
-                 return "Invalid Admin Key provided for Admin registration.";
-            }
-        }
-
-
-        // 5. If all checks passed
-        return null; // Indicates successful validation
+        return null;
     }
 
     /**
-     * Helper method to check if a String is null, empty, or contains only whitespace.
-     * @param str The String to check.
-     * @return true if the String is null or blank, false otherwise.
+     * Helper method to check if a string is null or empty (after trimming leading/trailing whitespace).
+     *
+     * @param str The string to check.
+     * @return true if the string is null or empty after trimming, false otherwise.
      */
-    private static boolean isNullOrBlank(String str) {
+    private static boolean isNullOrEmpty(String str) {
         return str == null || str.trim().isEmpty();
     }
 }

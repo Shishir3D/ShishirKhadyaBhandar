@@ -1,0 +1,271 @@
+@charset "UTF-8";
+/* user-profile.css */
+:root { /* Assuming these are defined in home.css or a global file */
+    --primary-color: #4CAF50;
+    --primary-dark-color: #388E3C;
+    --secondary-color: #f4f4f4;
+    --text-dark: #333;
+    --text-light: #fff;
+    --border-color: #ddd;
+    --card-bg: #fff;
+    --shadow: 0 2px 5px rgba(0,0,0,0.1);
+    --success-bg: #d4edda;
+    --success-border: #c3e6cb;
+    --success-text: #155724;
+    --error-bg: #f8d7da;
+    --error-border: #f5c6cb;
+    --error-text: #721c24;
+}
+
+.profile-page-container {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.profile-page-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-dark-color);
+}
+
+/* Message Styles */
+.message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    text-align: center;
+}
+.success-message {
+    color: var(--success-text);
+    background-color: var(--success-bg);
+    border-color: var(--success-border);
+}
+.error-message {
+    color: var(--error-text);
+    background-color: var(--error-bg);
+    border-color: var(--error-border);
+}
+
+
+.profile-sections {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column initially */
+    gap: 30px;
+}
+
+.profile-section {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.profile-section h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.profile-section h2 i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.profile-info-card .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns for info */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.profile-info-card .info-item strong {
+    display: block;
+    color: #555;
+    margin-bottom: 3px;
+    font-size: 0.9em;
+}
+.profile-info-card .info-item p {
+    margin: 0;
+    font-size: 1.05em;
+}
+.profile-info-card .info-item.full-width {
+    grid-column: 1 / -1; /* Make address span full width if needed */
+}
+
+/* Order History Table */
+.order-history-card .table-responsive {
+    overflow-x: auto;
+}
+.order-history-card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+.order-history-card th, .order-history-card td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95em;
+}
+.order-history-card th {
+    background-color: #f8f9fa;
+}
+.order-history-card .status {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.order-history-card .status-pending { background-color: #fff3cd; color: #856404; }
+.order-history-card .status-shipped { background-color: #d1ecf1; color: #0c5460; }
+.order-history-card .status-delivered { background-color: #d4edda; color: #155724; }
+.order-history-card .status-cancelled { background-color: #f8d7da; color: #721c24; }
+.btn-view-details {
+    padding: 5px 10px;
+    font-size: 0.85em;
+    background-color: var(--primary-dark-color);
+    color: var(--text-light);
+}
+.btn-view-details:hover {
+    background-color: var(--primary-color);
+}
+
+
+/* Buttons within profile sections */
+.profile-section .btn {
+    margin-top: 10px;
+}
+.btn { /* Ensure .btn styles from home.css are applied or define them here too */
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+.btn i {
+    /* margin-right: 8px; */
+}
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+.btn-primary:hover {
+    background-color: var(--primary-dark-color);
+}
+.btn-secondary {
+    background-color: #6c757d;
+    color: var(--text-light);
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+
+/* Modal Styles (can be shared with admin dashboard or kept separate) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 25px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 450px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-form .form-group {
+    margin-bottom: 15px;
+}
+.modal-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #444;
+}
+.modal-form input[type="text"],
+.modal-form input[type="email"],
+.modal-form input[type="tel"],
+.modal-form input[type="password"],
+.modal-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+.modal-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+.modal-form .form-actions {
+    text-align: right;
+    margin-top: 25px;
+}
+.modal-form .form-actions .btn + .btn {
+    margin-left: 10px;
+}
+
+/* Responsive for profile page */
+@media (min-width: 768px) {
+    .profile-sections {
+        /* Example: Two columns for info and security, orders below */
+        /* grid-template-columns: 1fr 1fr; */
+    }
+    .profile-info-card, .security-card {
+        /* Consider placing them side-by-side on larger screens */
+    }
+}
+
+@media (min-width: 992px) {
+    .profile-sections {
+        /* For very wide screens, maybe a 3-column layout if it makes sense */
+        /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+    }
+}

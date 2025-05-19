@@ -12,8 +12,12 @@
 
   <header>
     <div class="container">
-      <div id="branding">
+      <div id="branding" style="display:flex; justify-content:space-between">
         <h1>Shishir Khadya Bhandar</h1>
+       <div class="user-actions">
+          <a href="${pageContext.request.contextPath}/login" class="action-link login-link">Login</a>
+          <a href="${pageContext.request.contextPath}/register" class="action-link signup-link">Sign Up</a>
+      </div>
       </div>
       <nav>
         <ul>
